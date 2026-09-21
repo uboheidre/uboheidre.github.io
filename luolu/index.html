@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="骡鹿专题页 - 提供骡鹿的生物学特征、栖息地分布、保护现状及饲养管理指南，是了解野生动物与生态保护的权威资源。">
+    <meta name="keywords" content="骡鹿, 鹿科动物, 野生动物保护, 驯鹿, 生态学, 栖息地">
+    <title>骡鹿-野生动物特征与栖息地分布百科</title>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c5f2d;
+            --secondary-color: #97bc62;
+            --accent-color: #d4a373;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 32px;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: var(--spacing-lg);
+        }
+
+        nav a {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)), url('https://picsum.photos/seed/moose/1600/900');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto var(--spacing-lg);
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #c08b5e;
+            transform: translateY(-2px);
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            padding: var(--spacing-lg) 0;
+            background-color: var(--white);
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+
+        .fact-card {
+            text-align: center;
+            padding: var(--spacing-md);
+            border: 1px solid #eee;
+            border-radius: var(--border-radius);
+        }
+
+        .fact-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--secondary-color);
+        }
+
+        .fact-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .fact-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* Article Section */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+            display: inline-block;
+        }
+
+        .article-card {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: var(--spacing-md);
+        }
+
+        .article-meta {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .article-body h3 {
+            font-size: 1.4rem;
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+            color: var(--primary-color);
+        }
+
+        .article-body p {
+            margin-bottom: var(--spacing-md);
+            text-align: justify;
+        }
+
+        /* Sidebar */
+        aside .sidebar-widget {
+            background: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .sidebar-title {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+        }
+
+        .category-list li {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+
+        .category-list a {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+        }
+
+        .count {
+            background-color: #eee;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background-color: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: var(--spacing-md);
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--white);
+            padding: var(--spacing-lg) 0;
+            margin-top: var(--spacing-lg);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding: var(--spacing-md) 0;
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            color: var(--text-light);
+            display: none;
+            padding-left: 10px;
+            border-left: 3px solid var(--secondary-color);
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '-';
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #ccc;
+            padding: var(--spacing-lg) 0 40px;
+            margin-top: var(--spacing-lg);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-inner {
+                padding: 0 var(--spacing-sm);
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: var(--spacing-md);
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .article-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <span>🦌</span> 骡鹿百科
+            </a>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
+            <nav>
+                <ul id="nav-list">
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#biology">生物学特征</a></li>
+                    <li><a href="#habitat">栖息地分布</a></li>
+                    <li><a href="#comparison">物种对比</a></li>
+                    <li><a href="#faq">常见问题</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>骡鹿：森林中的巨兽</h1>
+                <p>探索骡鹿的生态习性、外形特征及其在自然界中的独特地位，了解这种大型鹿科动物的生存智慧。</p>
+                <a href="#biology" class="cta-button">开始探索</a>
+            </div>
+        </section>
+
+        <!-- Quick Facts -->
+        <section class="quick-facts">
+            <div class="container">
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <div class="fact-icon">⚖️</div>
+                        <div class="fact-title">体重</div>
+                        <div class="fact-desc">雄性可达 300-500 公斤</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">📏</div>
+                        <div class="fact-title">肩高</div>
+                        <div class="fact-desc">雄性肩高约 1.5 - 1.8 米</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🌍</div>
+                        <div class="fact-title">分布</div>
+                        <div class="fact-desc">北半球寒温带森林</div>
+                    </div>
+                    <div class="fact-card">
+                        <div class="fact-icon">🌿</div>
+                        <div class="fact-title">食性</div>
+                        <div class="fact-desc">草食性，以嫩枝、树叶为主</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <div class="container main-content">
+            <div class="content-grid">
+                <!-- Left Column: Articles -->
+                <article>
+                    <div class="article-card">
+                        <img src="https://picsum.photos/seed/moose_forest/800/400" alt="骡鹿在森林中" class="article-image">
+                        <div class="article-meta">发布于 2023-10-24 | 分类：野生动物</div>
+                        <h2>骡鹿的生物学特征与识别指南</h2>
+                        <div class="article-body">
+                            <p>骡鹿，学名驼鹿，是世界上体型最大的鹿科动物之一。它们主要分布在北半球的寒温带森林中，从北美北部一直延伸到欧洲和亚洲的北部地区。</p>
+                            
+                            <h3>外形特征</h3>
+                            <p>雄性骡鹿最显著的特征是巨大的扁平角，角呈扁平的铲状，边缘有锯齿，这在鹿科动物中独树一帜。这些角每年都会脱落并重新生长。骡鹿的颈部肌肉发达，形成明显的隆起，配合宽大的鼻子，给人一种威严而笨重的印象。</p>
+                            
+                            <h3>生活习性</h3>
+                            <p>作为食草动物，骡鹿主要在清晨和黄昏活动，白天则躲在树荫下休息。它们的消化系统非常适应高纤维的植物，能够高效利用苔藓、地衣以及各种阔叶树的嫩枝。</p>
+                        </div>
+                    </div>
+
+                    <div class="article-card">
+                        <div class="article-meta">发布于 2023-10-20 | 分类：栖息地保护</div>
+                        <h2>栖息地选择与环境影响</h2>
+                        <div class="article-body">
+                            <p>骡鹿偏好开阔的林地、沼泽和河流沿岸。它们经常在水中寻找食物或避开蚊虫叮咬。随着人类活动的扩张，森林砍伐和栖息地破碎化对骡鹿的生存构成了严峻挑战。</p>
+                            <p>在冬季，由于食物匮乏，骡鹿会迁移到海拔较低、积雪较浅的地区。而在夏季，它们则活跃于高海拔的针叶林或混交林中。</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Right Column: Sidebar -->
+                <aside>
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">物种分类</h3>
+                        <ul class="category-list">
+                            <li><a href="#">北美驼鹿 <span class="count">124</span></a></li>
+                            <li><a href="#">欧亚驼鹿 <span class="count">89</span></a></li>
+                            <li><a href="#">森林驼鹿 <span class="count">56</span></a></li>
+                            <li><a href="#">亚种分布 <span class="count">32</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">相关标签</h3>
+                        <div class="tag-cloud">
+                            <a href="#" class="tag">驼鹿角</a>
+                            <a href="#" class="tag">野生动物保护</a>
+                            <a href="#" class="tag">森林生态</a>
+                            <a href="#" class="tag">驯鹿</a>
+                            <a href="#" class="tag">鹿科</a>
+                            <a href="#" class="tag">冬季迁徙</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h3 class="sidebar-title">物种对比</h3>
+                        <table class="comparison-table">
+                            <tr>
+                                <th>特征</th>
+                                <th>骡鹿</th>
+                                <th>驯鹿</th>
+                            </tr>
+                            <tr>
+                                <td>角形</td>
+                                <td>扁平、分叉、铲状</td>
+                                <td>分支较多、弯曲</td>
+                            </tr>
+                            <tr>
+                                <td>角龄</td>
+                                <td>每年脱落</td>
+                                <td>终生不脱落</td>
+                            </tr>
+                            <tr>
+                                <td>栖息地</td>
+                                <td>森林与沼泽</td>
+                                <td>苔原与冻土</td>
+                            </tr>
+                        </table>
+                    </div>
+                </aside>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2 class="section-title">常见问题解答</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">骡鹿为什么被称为“骡”鹿？</div>
+                    <div class="faq-answer">
+                        <p>虽然名字里带有“骡”字，但骡鹿并非杂交产物。其英文名 Moose 源自阿尔冈昆语（北美原住民语言），意为“吃树枝者”。中文名“骡鹿”可能源于其体型较大、步态稳健，类似于家畜“骡子”给人的感觉。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">骡鹿的天敌有哪些？</div>
+                    <div>
+                        <div class="faq-answer">
+                            <p>成年骡鹿几乎没有自然天敌，主要依靠巨大的体型和警觉性生存。幼崽可能会受到灰熊、狼或美洲狮的威胁。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">如何区分雄性和雌性骡鹿？</div>
+                    <div>
+                        <div class="faq-answer">
+                            <p>成年雄性拥有巨大的角，而雌性通常没有角，或者仅长有非常小的角桩。雄性的颈部通常比雌性更宽大，有明显的喉囊。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于骡鹿百科</h4>
+                    <p>致力于提供关于野生动物的科普知识，保护生物多样性，促进人与自然的和谐共处。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">物种图鉴</a></li>
+                        <li><a href="#">栖息地地图</a></li>
+                        <li><a href="#">研究论文</a></li>
+                        <li><a href="#">志愿者招募</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>法律声明</h4>
+                    <ul>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">使用条款</a></li>
+                        <li><a href="#">版权信息</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 骡鹿百科 All Rights Reserved. 本站内容仅供科普参考。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navList = document.getElementById('nav-list');
+            navList.classList.toggle('show');
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const parent = item.parentElement;
+                parent.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('nav-list').classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
