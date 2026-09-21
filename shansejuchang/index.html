@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山色剧场-沉浸式短剧观看与热门影视推荐平台</title>
+    <meta name="description" content="山色剧场致力于提供高质量的短剧、微电影及影视资源。在这里，您能发现最新热门剧集、独家原创内容以及高清流畅的观看体验。立即登录山色剧场，开启您的影视探索之旅。">
+    <meta name="keywords" content="山色剧场, 短剧, 在线观看, 影视推荐, 热门剧集, 山色剧场官网">
+    <style>
+        /* --- 全局重置与变量 --- */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-secondary: #666666;
+            --border-radius: 8px;
+            --spacing-unit: 16px;
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: var(--header-height);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- 布局容器 --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-unit);
+        }
+
+        /* --- 头部与导航 --- */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .main-nav ul {
+            display: flex;
+            gap: 32px;
+        }
+
+        .main-nav a {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .main-nav a:hover, .main-nav a.active {
+            color: var(--accent-color);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-login {
+            padding: 8px 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        .btn-login:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary {
+            background: var(--accent-color);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* --- Hero 区域 --- */
+        .hero {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            display: flex;
+            align-items: center;
+            color: white;
+            margin-bottom: 40px;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            padding-left: var(--spacing-unit);
+        }
+
+        .hero-tag {
+            background: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            mask-image: linear-gradient(to left, black 20%, transparent 80%);
+            -webkit-mask-image: linear-gradient(to left, black 20%, transparent 80%);
+        }
+
+        /* --- 内容网格布局 --- */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 12px;
+        }
+
+        .view-all {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .view-all:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- 短剧卡片 --- */
+        .drama-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .drama-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .drama-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-poster {
+            position: relative;
+            width: 100%;
+            padding-top: 140%; /* Portrait aspect ratio */
+            background-color: #eee;
+        }
+
+        .card-poster img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .card-info {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-tags span {
+            background: #f0f0f0;
+            color: #666;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        /* --- 分类导航 --- */
+        .category-nav {
+            display: flex;
+            gap: 16px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .category-nav::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        .cat-item {
+            flex-shrink: 0;
+            padding: 8px 24px;
+            background: var(--card-bg);
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cat-item.active, .cat-item:hover {
+            background: var(--primary-color);
+            color: #fff;
+            border-color: var(--primary-color);
+        }
+
+        /* --- 影视榜单 --- */
+        .rank-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .rank-item {
+            display: flex;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 12px;
+            box-shadow: var(--shadow-sm);
+            align-items: center;
+        }
+
+        .rank-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ddd;
+            width: 40px;
+            text-align: center;
+        }
+
+        .rank-item:nth-child(1) .rank-num { color: #ff4757; }
+        .rank-item:nth-child(2) .rank-num { color: #ffa502; }
+        .rank-item:nth-child(3) .rank-num { color: #2ed573; }
+
+        .rank-poster {
+            width: 80px;
+            height: 112px;
+            border-radius: 4px;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .rank-info {
+            flex: 1;
+        }
+
+        .rank-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .rank-meta {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .rank-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* --- 侧边栏 --- */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .sidebar-widget {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .widget-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .topic-list li {
+            margin-bottom: 12px;
+        }
+
+        .topic-list a {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-main);
+        }
+
+        .topic-list a:hover {
+            color: var(--accent-color);
+        }
+
+        .topic-count {
+            color: #999;
+            font-size: 12px;
+        }
+
+        /* --- 页脚 --- */
+        .site-footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            padding: 60px 0 20px;
+            margin-top: 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 12px;
+        }
+
+        /* --- 响应式 --- */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 40px 0;
+                flex-direction: column;
+                text-align: center;
+                border-radius: 0;
+            }
+
+            .hero-bg-img {
+                display: none;
+            }
+
+            .hero-content {
+                padding: 0;
+            }
+
+            .main-nav {
+                display: none; /* 简化移动端 */
+            }
+
+            .layout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .rank-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .rank-poster {
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+
+            .rank-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 头部导航 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent-color)"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect><line x1="7" y1="2" x2="7" y2="22"></line><line x1="17" y1="2" x2="17" y2="22"></line><line x1="2" y1="12" x2="22" y2="12"></line><line x1="2" y1="7" x2="7" y2="7"></line><line x1="2" y1="17" x2="7" y2="17"></line><line x1="17" y1="17" x2="22" y2="17"></line><line x1="17" y1="7" x2="22" y2="7"></line></svg>
+                山色剧场<span>.</span>
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">首页</a></li>
+                    <li><a href="#">短剧专区</a></li>
+                    <li><a href="#">电视剧集</a></li>
+                    <li><a href="#">电影库</a></li>
+                    <li><a href="#">动漫番剧</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <a href="#" class="btn-login">登录</a>
+                <a href="#" class="btn-primary">注册</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Hero 首屏 -->
+        <section class="hero">
+            <img src="https://picsum.photos/seed/hero1/600/500" alt="Hero Background" class="hero-bg-img">
+            <div class="hero-content">
+                <span class="hero-tag">本周重磅推荐</span>
+                <h1>山色剧场 · 沉浸式微短剧体验</h1>
+                <p>汇聚全网热门短剧资源，高清画质，无需等待，随时随地开启您的精彩剧情之旅。</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn-primary">立即观看</a>
+                    <a href="#" style="background:rgba(255,255,255,0.2); color:white; padding:8px 20px; border-radius:20px; font-size:14px;">浏览片单</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 分类筛选 -->
+        <nav class="category-nav">
+            <div class="cat-item active">全部</div>
+            <div class="cat-item">都市情感</div>
+            <div class="cat-item">古装穿越</div>
+            <div class="cat-item">悬疑推理</div>
+            <div class="cat-item">甜宠虐恋</div>
+            <div class="cat-item">职场励志</div>
+            <div class="cat-item">家庭伦理</div>
+            <div class="cat-item">历史传记</div>
+        </nav>
+
+        <!-- 热门短剧 -->
+        <section class="drama-section">
+            <div class="section-header">
+                <h2 class="section-title">热门短剧</h2>
+                <a href="#" class="view-all">查看更多 &rarr;</a>
+            </div>
+            <div class="drama-grid">
+                <!-- 卡片 1 -->
+                <article class="drama-card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/drama1/300/420" alt="短剧封面">
+                        <span class="card-badge">更新至12集</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">豪门继妹是团宠</h3>
+                        <div class="card-meta">
+                            <span>2023-10-24</span>
+                            <span>1.2w人正在看</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>甜宠</span><span>豪门</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 2 -->
+                <article class="drama-card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/drama2/300/420" alt="短剧封面">
+                        <span class="card-badge">完结</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">重生之我在古代当首富</h3>
+                        <div class="card-meta">
+                            <span>2023-10-22</span>
+                            <span>8k人正在看</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>穿越</span><span>爽文</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 3 -->
+                <article class="drama-card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/drama3/300/420" alt="短剧封面">
+                        <span class="card-badge">热播中</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">深渊下的凝视</h3>
+                        <div class="card-meta">
+                            <span>2023-10-21</span>
+                            <span>5k人正在看</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>悬疑</span><span>惊悚</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- 卡片 4 -->
+                <article class="drama-card">
+                    <div class="card-poster">
+                        <img src="https://picsum.photos/seed/drama4/300/420" alt="短剧封面">
+                        <span class="card-badge">更新至5集</span>
+                    </div>
+                    <div class="card-info">
+                        <h3 class="card-title">重返十八岁</h3>
+                        <div class="card-meta">
+                            <span>2023-10-20</span>
+                            <span>3k人正在看</span>
+                        </div>
+                        <div class="card-tags">
+                            <span>青春</span><span>校园</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 双栏布局：榜单与侧边栏 -->
+        <div class="layout-grid">
+            
+            <!-- 影视榜单 -->
+            <section class="rank-section">
+                <div class="section-header">
+                    <h2 class="section-title">全网热播榜单</h2>
+                    <a href="#" class="view-all">查看完整榜单 &rarr;</a>
+                </div>
+                <div class="rank-list">
+                    <div class="rank-item">
+                        <span class="rank-num">1</span>
+                        <img src="https://picsum.photos/seed/rank1/160/224" alt="封面" class="rank-poster">
+                        <div class="rank-info">
+                            <h3 class="rank-title">我在废土修仙</h3>
+                            <div class="rank-meta">科幻 / 热血 / 45集</div>
+                            <div class="rank-stats">
+                                <span class="stat-item">👁️ 892万</span>
+                                <span class="stat-item">❤️ 45.2万</span>
+                                <span class="stat-item">⭐ 9.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rank-item">
+                        <span class="rank-num">2</span>
+                        <img src="https://picsum.photos/seed/rank2/160/224" alt="封面" class="rank-poster">
+                        <div class="rank-info">
+                            <h3 class="rank-title">隐秘的角落</h3>
+                            <div class="rank-meta">悬疑 / 犯罪 / 12集</div>
+                            <div class="rank-stats">
+                                <span class="stat-item">👁️ 756万</span>
+                                <span class="stat-item">❤️ 38.1万</span>
+                                <span class="stat-item">⭐ 9.6</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rank-item">
+                        <span class="rank-num">3</span>
+                        <img src="https://picsum.photos/seed/rank3/160/224" alt="封面" class="rank-poster">
+                        <div class="rank-info">
+                            <h3 class="rank-title">长安十二时辰</h3>
+                            <div class="rank-meta">古装 / 历史 / 24集</div>
+                            <div class="rank-stats">
+                                <span class="stat-item">👁️ 640万</span>
+                                <span class="stat-item">❤️ 29.5万</span>
+                                <span class="stat-item">⭐ 9.5</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rank-item">
+                        <span class="rank-num">4</span>
+                        <img src="https://picsum.photos/seed/rank4/160/224" alt="封面" class="rank-poster">
+                        <div class="rank-info">
+                            <h3 class="rank-title">繁花</h3>
+                            <div class="rank-meta">年代 / 剧情 / 30集</div>
+                            <div class="rank-stats">
+                                <span class="stat-item">👁️ 512万</span>
+                                <span class="stat-item">❤️ 24.3万</span>
+                                <span class="stat-item">⭐ 9.4</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 侧边栏 -->
+            <aside>
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">热门话题</h3>
+                    <ul class="topic-list">
+                        <li><a href="#"># 2024必看短剧推荐 <span class="topic-count">1.2w</span></a></li>
+                        <li><a href="#"># 甜宠剧天花板 <span class="topic-count">8.5k</span></a></li>
+                        <li><a href="#"># 反套路剧情解析 <span class="topic-count">6.2k</span></a></li>
+                        <li><a href="#"># 豪门恩怨大结局 <span class="topic-count">4.1k</span></a></li>
+                        <li><a href="#"># 下周更新排期表 <span class="topic-count">3.3k</span></a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget">
+                    <h3 class="widget-title">观看帮助</h3>
+                    <ul class="topic-list">
+                        <li><a href="#">如何解决卡顿问题？</a></li>
+                        <li><a href="#">会员权益说明</a></li>
+                        <li><a href="#">设备兼容性列表</a></li>
+                        <li><a href="#">举报不良内容流程</a></li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-widget" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <h3 class="widget-title" style="color:white; border-color: rgba(255,255,255,0.3);">下载山色剧场APP</h3>
+                    <p style="font-size:12px; margin-bottom:12px; opacity:0.9;">随时随地，想看就看，离线缓存更方便。</p>
+                    <a href="#" style="display:block; background:white; color:#667eea; text-align:center; padding:8px; border-radius:4px; font-size:12px; font-weight:bold;">立即下载</a>
+                </div>
+            </aside>
+        </div>
+
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>关于山色剧场</h4>
+                    <p style="font-size:13px; line-height:1.8; color:#bdc3c7;">山色剧场是一个专注于提供高清短剧、影视资源与在线观看服务的平台。我们致力于为用户打造流畅、纯净的观影环境。</p>
+                </div>
+                <div class="footer-col">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="#">网站地图</a></li>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">隐私政策</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="#">商务合作</a></li>
+                        <li><a href="#">版权申诉</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">加入我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>关注我们</h4>
+                    <ul>
+                        <li><a href="#">微信公众号</a></li>
+                        <li><a href="#">新浪微博</a></li>
+                        <li><a href="#">B站官方账号</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 山色剧场 版权所有. 仅供学习交流使用，请勿用于商业用途。</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 广告代码 -->
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</body>
+                              </html>
